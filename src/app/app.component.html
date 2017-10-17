@@ -1,0 +1,77 @@
+<global-search
+  *ngIf="config.globalSearchEnabled"
+  (globalUpdate)="globalSearchTerm = $event">
+</global-search>
+<csv-export *ngIf="config.exportEnabled"></csv-export>
+
+<table class="ng2-table__table--striped">
+  <thead>
+  <tr>
+    <ng-container *ngFor="let key of keys;let headerIndex = index">
+      <th [style.display]="config.orderEnabled?'':'none' "
+          *ngIf="showColumn(key)"
+          (click)="orderBy(key)">
+        <div *ngIf="isColumnDefined();then customHeader else defaultHeader"></div>
+        <ng-template #customHeader>{{config.columns[headerIndex]}}</ng-template>
+        <ng-template #defaultHeader>{{ key }}</ng-template>
+        <span *ngIf="resource.order[key]==='asc' "
+              class="ng2-table__sort-indicator ng2-table__sort-indicator--down">
+        </span>
+        <span *ngIf="resource.order[key]==='desc' "
+              class="ng2-table__sort-indicator ng2-table__sort-indicator--up">
+        </span>
+      </th>
+    </ng-container>
+    <ng-container *ngFor="let key of keys">
+      <th [style.display]="!config.orderEnabled?'':'none' "
+          *ngIf="showColumn(key)">
+        {{ key }}
+      </th>
+    </ng-container>
+    <th *ngIf="config.editEnabled">Actions</th>
+  </tr>
+  <tr *ngIf="config.searchEnabled">
+    <ng-container *ngFor="let key of keys">
+      <th *ngIf="showColumn(key)">
+        <table-header (update)="term = $event" [key]="key"></table-header>
+      </th>
+    </ng-container>
+    <th *ngIf="config.editEnabled"></th>
+  </tr>
+  </thead>
+  <tbody *ngIf="data">
+  <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range;
+              let rowIndex = index"
+      [class.ng2-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
+    <ng-container *ngFor="let key of keys; let colIndex = index">
+      <td *ngIf="showColumn(key)"
+          (click)="clickedCell($event, row, key, colIndex, rowIndex)"
+          [class.ng2-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
+          [class.ng2-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
+      >
+        <div>{{ row[key] }}</div>
+      </td>
+    </ng-container>
+    <td *ngIf="config.editEnabled">
+      <button class="ng2-table__button">Edit</button>
+    </td>
+  </tr>
+  </tbody>
+  <tbody *ngIf="!data">
+  <tr>
+    <td>No results</td>
+  </tr>
+  </tbody>
+  <tfoot *ngIf="config.footerEnabled">
+  <tr>
+    <td *ngFor="let key of keys"></td>
+    <td></td>
+  </tr>
+  </tfoot>
+</table>
+
+<pagination
+  *ngIf="config.paginationEnabled"
+  [numberOfItems]="numberOfItems"
+  (updateRange)="range = $event">
+</pagination>

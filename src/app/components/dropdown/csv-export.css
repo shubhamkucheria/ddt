@@ -1,0 +1,10 @@
+/*TODO move this button to some imports */
+.ng2-table__csv-export-button {
+  background: #f0f0f0;
+  border: 1px solid #d7d7d7;
+  font-size: .8em;
+  padding: 6px;
+  display: inline-block;
+  float: right;
+  margin: 6px 0;
+}

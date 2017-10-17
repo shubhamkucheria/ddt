@@ -1,0 +1,23 @@
+<div class="ng2-table__pagination-wrapper">
+  <ul class="ng2-table__pagination">
+    <li [class.disabled]="isFirstPage()">
+      <a href="#" (click)="previousPage($event)">«</a>
+    </li>
+
+    <li *ngFor="let page of pageNumbers" [class.active]="isActivePage(page)">
+      <a href="#" (click)="changePage($event, page)">{{page}}</a>
+    </li>
+
+    <li [class.disabled]="isLastPage()">
+      <a href="#" (click)="nextPage($event)">»</a>
+    </li>
+  </ul>
+
+  <ul class="ng2-table__items-per-page">
+    <li [class.active]="isActiveRange(5)"><a href="#" (click)="changeRange($event, 5)">5</a></li>
+    <li [class.active]="isActiveRange(10)"><a href="#" (click)="changeRange($event, 10)">10</a></li>
+    <li [class.active]="isActiveRange(25)"><a href="#" (click)="changeRange($event, 25)">25</a></li>
+    <li [class.active]="isActiveRange(50)"><a href="#" (click)="changeRange($event, 50)">50</a></li>
+    <li [class.active]="isActiveRange(100)"><a href="#" (click)="changeRange($event, 100)">100</a></li>
+  </ul>
+</div>

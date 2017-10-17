@@ -1,0 +1,67 @@
+.ng2-table__button, .ng2-table__csv-export-button {
+  background: #f0f0f0;
+  border: 1px solid #d7d7d7;
+  font-size: .8em;
+  padding: 6px;
+}
+
+.ng2-table__table, .ng2-table__table--striped {
+  border-spacing: 0;
+  width: 100%;
+}
+.ng2-table__table td,
+.ng2-table__table th, .ng2-table__table--striped td,
+.ng2-table__table--striped th {
+  border-color: #f0f0f0;
+  border-style: solid;
+  border-width: 1px 1px 0 0;
+  margin: 0;
+  padding: 2px;
+}
+.ng2-table__table thead > th, .ng2-table__table--striped thead > th {
+  cursor: pointer;
+  font-weight: 700;
+  text-align: left;
+}
+.ng2-table__table tr:last-child th, .ng2-table__table--striped tr:last-child th {
+  border-bottom-color: #cacaca;
+}
+.ng2-table__table tr:last-child td, .ng2-table__table--striped tr:last-child td {
+  border-bottom: 1px solid #f0f0f0;
+}
+.ng2-table__table tr td:first-child,
+.ng2-table__table tr th:first-child, .ng2-table__table--striped tr td:first-child,
+.ng2-table__table--striped tr th:first-child {
+  border-left: 1px solid #f0f0f0;
+}
+.ng2-table__table--striped tbody tr:nth-child(odd) {
+  background: #f0f0f0;
+}
+
+.ng2-table__table-row--selected {
+  background: #66c6f0 !important;
+}
+
+.ng2-table__table-col--selected {
+  background: #66c6f0 !important;
+}
+
+.ng2-table__table-cell--selected {
+  background: #66c6f0 !important;
+}
+
+.ng2-table__sort-indicator {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  float: right;
+  font-size: 0.5em;
+  height: 0;
+  padding-top: 4px;
+  width: 0;
+}
+.ng2-table__sort-indicator--up {
+  border-bottom: 5px solid #000;
+}
+.ng2-table__sort-indicator--down {
+  border-top: 5px solid #000;
+}
